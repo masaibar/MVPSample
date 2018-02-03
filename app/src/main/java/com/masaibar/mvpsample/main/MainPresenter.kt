@@ -1,12 +1,10 @@
 package com.masaibar.mvpsample.main
 
-class MainPresenter(
+import javax.inject.Inject
+
+class MainPresenter @Inject constructor(
         private val view: MainContract.View, private val repository: MainRepository
 ) : MainContract.Presenter {
-
-    override fun start() {
-        view.updateCount(repository.count)
-    }
 
     override fun increment() {
         repository.incrementCount()
@@ -25,5 +23,9 @@ class MainPresenter(
     override fun load() {
         val count = repository.loadCount()
         view.updateCount(count)
+    }
+
+    override fun start() {
+        view.updateCount(repository.count)
     }
 }

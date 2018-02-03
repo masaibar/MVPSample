@@ -1,14 +1,14 @@
 package com.masaibar.mvpsample.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.masaibar.mvpsample.R
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : DaggerAppCompatActivity(), MainContract.View {
 
-    private val repository: MainRepository by lazy { MainRepository(this.applicationContext) }
-    private val presenter: MainContract.Presenter by lazy { MainPresenter(this, repository) }
+    @Inject lateinit var presenter: MainContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +29,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         button_load.setOnClickListener {
             presenter.load()
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
         presenter.start()
     }
 
