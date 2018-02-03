@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     private val presenter: MainContract.Presenter by lazy {
-        MainPresenter(this)
+        MainPresenter(this, MainRepository(this.applicationContext))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

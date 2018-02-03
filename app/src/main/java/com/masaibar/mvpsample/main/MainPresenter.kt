@@ -1,18 +1,20 @@
 package com.masaibar.mvpsample.main
 
-import android.util.Log
-
-class MainPresenter(private val view: MainContract.View) : MainContract.Presenter {
+class MainPresenter(
+        private val view: MainContract.View, private val repository: MainRepository
+) : MainContract.Presenter {
 
     override fun start() {
-        view.updateCount(0)
+        view.updateCount(repository.count)
     }
 
     override fun increment() {
-        Log.d("!!!", "increment called.")
+        repository.incrementCount()
+        view.updateCount(repository.count)
     }
 
     override fun reset() {
-        Log.d("!!!", "reset called.")
+        repository.resetCount()
+        view.updateCount(repository.count)
     }
 }
