@@ -2,8 +2,15 @@ package com.masaibar.mvpsample.main
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import javax.inject.Singleton
 
+//todo implement
+@Singleton
 class MainRepository(private val context: Context) {
+    init {
+        Log.d("!!!", "repository created")
+    }
 
     var count = 0
         private set
