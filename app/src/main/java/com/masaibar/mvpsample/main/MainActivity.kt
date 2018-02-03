@@ -7,9 +7,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
-    private val presenter: MainContract.Presenter by lazy {
-        MainPresenter(this, MainRepository(this.applicationContext))
-    }
+    private val repository: MainRepository by lazy { MainRepository(this.applicationContext) }
+    private val presenter: MainContract.Presenter by lazy { MainPresenter(this, repository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +20,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         button_reset.setOnClickListener {
             presenter.reset()
+        }
+
+        button_save.setOnClickListener {
+            presenter.save()
+        }
+
+        button_load.setOnClickListener {
+            presenter.load()
         }
     }
 

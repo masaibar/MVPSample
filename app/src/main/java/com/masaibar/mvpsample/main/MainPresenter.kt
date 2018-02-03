@@ -17,4 +17,13 @@ class MainPresenter(
         repository.resetCount()
         view.updateCount(repository.count)
     }
+
+    override fun save() {
+        repository.saveCount()
+    }
+
+    override fun load() {
+        val count = repository.loadCount()
+        view.updateCount(count)
+    }
 }

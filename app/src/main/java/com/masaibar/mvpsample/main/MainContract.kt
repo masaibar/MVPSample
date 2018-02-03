@@ -14,5 +14,9 @@ interface MainContract {
         fun increment()
 
         fun reset()
+
+        fun save()
+
+        fun load()
     }
 }
